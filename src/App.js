@@ -12,7 +12,7 @@ function App() {
       index === reviews.length - 1 ? setIndex(0) : setIndex(index + 1);
     }, 3000);
     return () => clearInterval(slider);
-  }, [index]);
+  }, [index, reviews]);
 
   return (
     <section className="section">
