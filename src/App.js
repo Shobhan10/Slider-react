@@ -4,15 +4,14 @@ import { FaQuoteRight } from "react-icons/fa";
 import people from "./data";
 
 function App() {
-  const [reviews, setReviews] = useState(people);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const slider = setInterval(() => {
-      index === reviews.length - 1 ? setIndex(0) : setIndex(index + 1);
+      index === people.length - 1 ? setIndex(0) : setIndex(index + 1);
     }, 3000);
     return () => clearInterval(slider);
-  }, [index, reviews]);
+  }, [index]);
 
   return (
     <section className="section">
@@ -23,7 +22,7 @@ function App() {
         </h2>
       </div>
       <div className="section-center">
-        {reviews.map((person, personIndex) => {
+        {people.map((person, personIndex) => {
           const { id, image, name, title, quote } = person;
 
           let position = "nextSlide";
@@ -34,7 +33,7 @@ function App() {
 
           if (
             personIndex === index - 1 ||
-            (index === 0 && personIndex === reviews.length - 1)
+            (index === 0 && personIndex === people.length - 1)
           ) {
             position = "lastSlide";
           }
@@ -52,7 +51,7 @@ function App() {
         <button
           className="prev"
           onClick={() => {
-            index === 0 ? setIndex(reviews.length - 1) : setIndex(index - 1);
+            index === 0 ? setIndex(people.length - 1) : setIndex(index - 1);
           }}
         >
           <FiChevronLeft />
@@ -60,7 +59,7 @@ function App() {
         <button
           className="next"
           onClick={() => {
-            index === reviews.length - 1 ? setIndex(0) : setIndex(index + 1);
+            index === people.length - 1 ? setIndex(0) : setIndex(index + 1);
           }}
         >
           <FiChevronRight />
